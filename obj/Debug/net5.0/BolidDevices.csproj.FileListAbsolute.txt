@@ -1,0 +1,16 @@
+C:\Users\dioni\BolidDevices\BolidDevices\bin\Debug\net5.0\BolidDevices.exe
+C:\Users\dioni\BolidDevices\BolidDevices\bin\Debug\net5.0\BolidDevices.deps.json
+C:\Users\dioni\BolidDevices\BolidDevices\bin\Debug\net5.0\BolidDevices.runtimeconfig.json
+C:\Users\dioni\BolidDevices\BolidDevices\bin\Debug\net5.0\BolidDevices.runtimeconfig.dev.json
+C:\Users\dioni\BolidDevices\BolidDevices\bin\Debug\net5.0\BolidDevices.dll
+C:\Users\dioni\BolidDevices\BolidDevices\bin\Debug\net5.0\ref\BolidDevices.dll
+C:\Users\dioni\BolidDevices\BolidDevices\bin\Debug\net5.0\BolidDevices.pdb
+C:\Users\dioni\BolidDevices\BolidDevices\obj\Debug\net5.0\BolidDevices.csprojAssemblyReference.cache
+C:\Users\dioni\BolidDevices\BolidDevices\obj\Debug\net5.0\BolidDevices.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dioni\BolidDevices\BolidDevices\obj\Debug\net5.0\BolidDevices.AssemblyInfoInputs.cache
+C:\Users\dioni\BolidDevices\BolidDevices\obj\Debug\net5.0\BolidDevices.AssemblyInfo.cs
+C:\Users\dioni\BolidDevices\BolidDevices\obj\Debug\net5.0\BolidDevices.csproj.CoreCompileInputs.cache
+C:\Users\dioni\BolidDevices\BolidDevices\obj\Debug\net5.0\BolidDevices.dll
+C:\Users\dioni\BolidDevices\BolidDevices\obj\Debug\net5.0\ref\BolidDevices.dll
+C:\Users\dioni\BolidDevices\BolidDevices\obj\Debug\net5.0\BolidDevices.pdb
+C:\Users\dioni\BolidDevices\BolidDevices\obj\Debug\net5.0\BolidDevices.genruntimeconfig.cache
