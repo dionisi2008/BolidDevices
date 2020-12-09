@@ -5,7 +5,7 @@ using System.Timers;
 public class ModuleRS485 //Модуль Интерфейса RS485 Для стандарной платы
 {
     protected int Adress; //Адрес устройства в RS485
-
+    public double Resistor = 0.0;
     protected System.Timers.Timer RSTimer; //Таймер ожидания опроса ПКУ
     protected string NameDevices; //Имя Устройства
     protected int SpeedIntefaces; //Скорость интерфейса
