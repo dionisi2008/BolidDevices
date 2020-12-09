@@ -7,8 +7,12 @@ namespace BolidDevices
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!!");
-            ModuleCPU  DevelopCPU = new ModuleCPU();
-            DevelopCPU
+
+            ModuleCPU DevelopCPU = new ModuleCPU(); //Начинаю разработку стандартных инструкций CPU
+            DevelopCPU.EventVolt(GetByteMessage("Напряжение" + '\r' + "Ввод 1" + '\r' + "12")); //Прикидываюсь что
+            // передаю на цпу питани с модуля питания
+
+            
 
             //     //Инцилизируем Интерфейс RS485, по
             //     //сути двухжильный кабель на который садяться приборы
@@ -33,6 +37,11 @@ namespace BolidDevices
                 GetNewDevices.WriteRS485 += GetPKU.ReadRS485;
                 GetPKU.WriteRS485 += GetNewDevices.ReadRS485;
                 GetRS485.Add(GetNewDevices);
+            }
+
+            static byte[] GetByteMessage(string GetMessage)
+            {
+                return System.Text.UTF8Encoding.UTF8.GetBytes(GetMessage);
             }
         }
     }

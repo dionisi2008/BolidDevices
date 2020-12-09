@@ -16,8 +16,9 @@ public class ModuleRS485 //Модуль Интерфейса RS485 Для ста
     public delegate void DelegateWriteRS485(int AdressOut, int AdressGet, byte[] OutByte);
     //Экзимпляр делегаты записи в интерфейса
 
-    public delegate void DelegateCPUWriteEventRS485(byte[] GetDataRS485); //Делегата для общения модуля RS-485 c CPU
+    public delegate void DelegateCPUWriteEventRS485(byte[] GetDataRS485); //Делегата для общения модуля RS-485 c CPU    
     public DelegateCPUWriteEventRS485 CPUWriteDataRS; //Для записи в CPU
+
     public DelegateWriteRS485 WriteRS485; //Для првязки всех устройств в интерфейсе
 
     public void ReadRS485(int AdressOut, int AdressGet, byte[] OutByte) //Для чтения из интерфейса
@@ -55,6 +56,7 @@ public class ModuleRS485 //Модуль Интерфейса RS485 Для ста
             RSTimer.Start();
             ConnectPKU = true;
             System.Console.WriteLine("Cвязь с ПКУ востановлена");
+            
             //CPUWriteDataRS(UTF8Encoding.UTF8.GetBytes("Cвязь с ПКУ востановлена"));
         }
     }
@@ -77,5 +79,10 @@ public class ModuleRS485 //Модуль Интерфейса RS485 Для ста
 
             System.Console.WriteLine("Debug Истёк таймер");
         };
+    }
+
+    public void CPUReadDataRS(byte[] ReadDataCPU, int AdressOut)
+    {
+
     }
 }
