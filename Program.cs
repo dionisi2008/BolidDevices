@@ -7,9 +7,10 @@ namespace BolidDevices
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!!");
-
-            ModuleCPU DevelopCPU = new ModuleCPU(); //Начинаю разработку стандартных инструкций CPU
-            DevelopCPU.EventVolt(GetByteMessage("Напряжение" + '\r' + "Ввод 1" + '\r' + "12")); //Прикидываюсь что
+            ModuleBoard DevelopBoard = new ModuleBoard("205-137-162-64-241-160-67-155");
+            DevelopBoard.Power.IN1Change(12);
+            DevelopBoard.CPU.StartCPU();
+            System.Console.ReadLine();
             // передаю на цпу питани с модуля питания
 
 

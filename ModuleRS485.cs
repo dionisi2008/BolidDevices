@@ -12,7 +12,6 @@ public class ModuleRS485 //Модуль Интерфейса RS485 Для ста
 
     private bool ConnectPKU = true; //Состояние подключения к ПКУ
     protected double VersionProgramm; //Версия прошивки устройства
-    protected byte[] MACDevices = new byte[8]; //Уникальный индификатор устройства
     public delegate void DelegateWriteRS485(int AdressOut, int AdressGet, byte[] OutByte);
     //Экзимпляр делегаты записи в интерфейса
 
@@ -56,7 +55,7 @@ public class ModuleRS485 //Модуль Интерфейса RS485 Для ста
             RSTimer.Start();
             ConnectPKU = true;
             System.Console.WriteLine("Cвязь с ПКУ востановлена");
-            
+
             //CPUWriteDataRS(UTF8Encoding.UTF8.GetBytes("Cвязь с ПКУ востановлена"));
         }
     }
@@ -66,9 +65,7 @@ public class ModuleRS485 //Модуль Интерфейса RS485 Для ста
         this.NameDevices = NameDevices;
         this.VersionProgramm = GetVersionDevices;
         this.SpeedIntefaces = GetSpeedDevices;
-        new System.Random(System.DateTime.Now.Millisecond).NextBytes(MACDevices);
         this.RSTimer = new System.Timers.Timer(this.SpeedIntefaces);
-        this.RSTimer.Start();
         this.RSTimer.Elapsed += (object sender, ElapsedEventArgs e) =>
         {
             if (ConnectPKU != false)
@@ -80,9 +77,42 @@ public class ModuleRS485 //Модуль Интерфейса RS485 Для ста
             System.Console.WriteLine("Debug Истёк таймер");
         };
     }
-
-    public void CPUReadDataRS(byte[] ReadDataCPU, int AdressOut)
+    public ModuleRS485() //Обявление Класса
     {
+
+    }
+    public void CPUReadDataRS(byte[] ReadDataCPU)
+    {
+        switch (ReadDataCPU[0])
+        {
+            case 1:
+                Adress = Convert.ToInt32(ReadDataCPU[1]);
+                string TempVersionProshivki = Convert.ToString(ReadDataCPU[2]) + ',' + Convert.ToString(ReadDataCPU[3]);
+                VersionProgramm = System.Convert.ToDouble(TempVersionProshivki);
+                if (ReadDataCPU[4] == 0)
+                {
+                    SpeedIntefaces = 9600;
+                }
+                List<byte> TempName = new List<byte>(ReadDataCPU);
+                NameDevices = UTF8Encoding.UTF8.GetString(TempName.GetRange(5, TempName.Count - 5).ToArray());
+                RSTimer = new Timer(9600);
+                this.RSTimer.Elapsed += (object sender, ElapsedEventArgs e) =>
+                {
+                    if (ConnectPKU != false)
+                    {
+
+                        FuncConnectPKU(false);
+                    }
+
+                    System.Console.WriteLine("Debug Истёк таймер");
+                };
+                RSTimer.Start();
+                break;
+            case 2:
+
+                break;
+        }
+
 
     }
 }
