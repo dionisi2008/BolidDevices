@@ -5,6 +5,8 @@ public class ModuleBoard
 // модуль питания, модуль интрфейса
 // модуль процессора
 {
+    public InType InPort;
+    public OutType OutPort;
     protected byte[] MACDevices = new byte[8]; //Уникальный индификатор устройства
     public string NameDevices = "DevelopDevices";
     //Тип устройсва

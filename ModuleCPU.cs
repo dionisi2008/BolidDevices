@@ -16,7 +16,7 @@ public class ModuleCPU
     private int InputVolt2 = 0;
     // Второй ввод питания
 
-    public int AdressRS;
+    public int AdressRS = 127;
     public string NameDevices;
     public double VersionProshivki;
     public bool StateConnectPKU = false;
@@ -64,7 +64,15 @@ public class ModuleCPU
     public void EventRS485(byte[] ReadGetDataRS485)
     // Оброботка событий от модуля интерфейса
     {
+        switch (UTF8Encoding.UTF8.GetString(ReadGetDataRS485))
+        {
+            case "Нет связи с ПКУ":
 
+            break;
+            case "Cвязь с ПКУ востановлена":
+            
+            break;
+        }
     }
 
     public void EventBoard()
@@ -84,11 +92,25 @@ public class ModuleCPU
                 {
                     case "Ввод 1":
                         InputVolt1 = Convert.ToInt32(TempDataVolt[2]);
-                        
+                        if (InputVolt1 > 10.2 || InputVolt2 > 10.2)
+                        {
+                            StartCPU();
+                        }
+                        else
+                        {
+                            //StopCPU();
+                        }
                         break;
                     case "Ввод 2":
                         InputVolt2 = Convert.ToInt32(TempDataVolt[2]);
-
+                        if (InputVolt1 > 10.2 || InputVolt2 > 10.2)
+                        {
+                            StartCPU();
+                        }
+                        else
+                        {
+                            //StopCPU();
+                        }
                         break;
                 }
                 break;
@@ -112,7 +134,7 @@ public class ModuleCPU
     {
         this.WriteMemory(GetBytes("Считать"));
         System.Threading.Thread.Sleep(500);
-        
+
         Console.WriteLine("Debug");
         List<byte> OutRS485 = new List<byte>();
         OutRS485.Add(1);

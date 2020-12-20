@@ -6,11 +6,20 @@ namespace BolidDevices
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!!");
-            ModuleBoard DevelopBoard = new ModuleBoard("205-137-162-64-241-160-67-155");
-            DevelopBoard.Power.IN1Change(12);
-            DevelopBoard.CPU.StartCPU();
+            Console.WriteLine("Добро пожаловать в стенд тестирования оборудования");
+
+            Stand StandDevelop = new Stand();
+            StandDevelop.NewDevicesStand(new S2000_4("205-137-162-64-241-160-67-155"), 1);
+            StandDevelop.DevicesPowerChange(1, 12, 0);
             System.Console.ReadLine();
+
+
+
+            // ModuleBoard DevelopBoard = new ModuleBoard("205-137-162-64-241-160-67-155");
+            // DevelopBoard.Power.IN1Change(12);
+            // DevelopBoard.CPU.StartCPU();
+            // System.Console.ReadLine();
+
             // передаю на цпу питани с модуля питания
 
 

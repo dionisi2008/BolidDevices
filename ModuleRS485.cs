@@ -47,7 +47,7 @@ public class ModuleRS485 //Модуль Интерфейса RS485 Для ста
         {
             ConnectPKU = false;
             System.Console.WriteLine("Нет связи с ПКУ");
-            //CPUWriteDataRS(UTF8Encoding.UTF8.GetBytes("Нет связи с ПКУ"));
+            CPUWriteDataRS(UTF8Encoding.UTF8.GetBytes("Нет связи с ПКУ"));
         }
         else
         {
@@ -56,7 +56,7 @@ public class ModuleRS485 //Модуль Интерфейса RS485 Для ста
             ConnectPKU = true;
             System.Console.WriteLine("Cвязь с ПКУ востановлена");
 
-            //CPUWriteDataRS(UTF8Encoding.UTF8.GetBytes("Cвязь с ПКУ востановлена"));
+            CPUWriteDataRS(UTF8Encoding.UTF8.GetBytes("Cвязь с ПКУ востановлена"));
         }
     }
     public ModuleRS485(int NewAdress, string NameDevices, double GetVersionDevices, int GetSpeedDevices) //Обявление Класса
