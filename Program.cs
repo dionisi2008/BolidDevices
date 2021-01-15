@@ -4,14 +4,68 @@ namespace BolidDevices
 {
     class Program
     {
+        public static Stand TestStand;
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Добро пожаловать в стенд тестирования оборудования");
+            System.Console.WriteLine(System.Console.ReadKey());
+            C2000M C2000MDevelop = new C2000M();
+            
+            // C2000M C2000MDevelop = new C2000M(new int[]{205,137,162,64,241,160,67,155});
 
-            Stand StandDevelop = new Stand();
-            StandDevelop.NewDevicesStand(new S2000_4("205-137-162-64-241-160-67-155"), 1);
-            StandDevelop.DevicesPowerChange(1, 12, 0);
+            Console.WriteLine("Добро пожаловать в стенд тестирования оборудования");
+            Console.WriteLine("Выберите дальнейшие действя");
+            Console.WriteLine("1 - Создать новый стенд");
+            Console.WriteLine("2 - Загрузить стенд");
+            Console.WriteLine("3 - Получить справку");
+
+
+            switch (System.Convert.ToInt32(Console.ReadLine()))
+            {
+                case 1:
+                    TestStand = new Stand();
+
+                    System.Console.WriteLine("Стэнд создан");
+
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+            System.Console.WriteLine("1 - Добаить новое утсройство");
+            switch (System.Convert.ToInt32(Console.ReadLine()))
+            {
+                case 1:
+                    System.Console.WriteLine("Укажите Адрес прибора");
+                    int NewAdress = GetIntReadLine();
+                    if (NewAdress >= 0 & NewAdress < 128)
+                    {
+                        System.Console.WriteLine("Укажите прибор");
+                        System.Console.WriteLine("1 - С2000-4");
+                        switch (GetIntReadLine())
+                        {
+                            case 1:
+                                S2000_4 C2_4 = new S2000_4("205-137-162-64-241-160-67-155");
+                                TestStand.NewDevicesStand(C2_4, NewAdress);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Не допустимый диопозон значений");
+                    }
+
+
+                    break;
+            }
             System.Console.ReadLine();
+
+            // Stand StandDevelop = new Stand();
+            // StandDevelop.NewDevicesStand(new S2000_4("205-137-162-64-241-160-67-155"), 1);
+            // StandDevelop.DevicesPowerChange(1, 12, 0);
+            // //StandDevelop.GetACP(1, 1);
+            // System.Console.ReadLine();
 
 
 
@@ -40,19 +94,29 @@ namespace BolidDevices
             //     //Запись в от пульта в интерфейса данных
             //     TestRS485[0].WriteRS485(2, 1,System.Text.UTF8Encoding.UTF8.GetBytes("Поиск Устройства" + '\r' + ""));
             //     System.Console.ReadLine();
-            // }
+        }
 
-            static void NewDevicesRS485PKU(List<ModuleRS485> GetRS485, ModuleRS485 GetPKU, ModuleRS485 GetNewDevices)
-            {
-                GetNewDevices.WriteRS485 += GetPKU.ReadRS485;
-                GetPKU.WriteRS485 += GetNewDevices.ReadRS485;
-                GetRS485.Add(GetNewDevices);
-            }
+        static void NewDevicesRS485PKU(List<ModuleRS485> GetRS485, ModuleRS485 GetPKU, ModuleRS485 GetNewDevices)
+        {
+            GetNewDevices.WriteRS485 += GetPKU.ReadRS485;
+            GetPKU.WriteRS485 += GetNewDevices.ReadRS485;
+            GetRS485.Add(GetNewDevices);
+        }
 
-            static byte[] GetByteMessage(string GetMessage)
-            {
-                return System.Text.UTF8Encoding.UTF8.GetBytes(GetMessage);
-            }
+        static byte[] GetByteMessage(string GetMessage)
+        {
+            return System.Text.UTF8Encoding.UTF8.GetBytes(GetMessage);
+        }
+
+        public static int GetIntReadLine()
+        {
+            return System.Convert.ToInt32(System.Console.ReadLine());
+        }
+
+        public static bool ShearchDevicesAdress(int GetAdress)
+        {
+
+            return false;
         }
     }
 }
